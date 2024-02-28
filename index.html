@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Todo app</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <main>
+    <div id="app">
+      <!-- Title -->
+      <div class="title">
+        <div class="title-container">
+          <h1>T O D O</h1>
+        </div>
+      </div>
+      <!-- Create tab -->
+      <div class="create-todo">
+        <div class="create-container">
+          <img class="check" src="./images/icon-check.svg" alt="">
+          <input class="input" @keyup.enter="addTask()" v-model="newTask" type="text"
+            placeholder="Create a new todo...">
+        </div>
+      </div>
+      <!-- Todo list -->
+      <div class="todos">
+        <div class="todos-container">
+          <ul v-if="todos.length > 0">
+            <li @click="addDoneClass(index)" v-for="(task, index) in todos" :key="index">
+              <span class="flex" :class="{done: task.done}">
+                <img :class="{check: task.done}" src="./images/icon-check.svg" alt="">
+                {{ task.text }}
+              </span>
+              <img class="remove-button" src="./images/icon-cross.svg" @click="removeTask(index)" alt="">
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src='https://unpkg.com/vue@3/dist/vue.global.js'></script>
+  <script src="app.js"></script>
+</body>
+
+</html>
